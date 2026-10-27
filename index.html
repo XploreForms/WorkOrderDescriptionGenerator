@@ -798,6 +798,129 @@ header.app-header { padding-top: calc(1.2rem + env(safe-area-inset-top, 0px)); p
 #output-box.example .example-text { white-space: pre-wrap; opacity: 0.66; }
 #output-box.example .example-tag { display: inline-block; margin-bottom: 0.6rem; padding: 0.15rem 0.6rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(120,140,130,0.25); }
 
+
+/* ---- condensed view, power-user layout: slim header, dropdowns, two form columns beside the description, everything on one screen ---- */
+:root[data-xp-view="condensed"] header.app-header { padding: calc(0.5rem + env(safe-area-inset-top, 0px)) 0 0.5rem; }
+:root[data-xp-view="condensed"] header.app-header img { width: 7.5rem; }
+:root[data-xp-view="condensed"] header.app-header h1 { font-size: 1.05rem; }
+:root[data-xp-view="condensed"] header.app-header p { font-size: 0.78rem; margin-top: 0.1rem; }
+:root[data-xp-view="condensed"] .chip-actor.at-header { right: calc(max(0.9rem, (100% - 110rem) / 2 + 0.9rem) - 6px); transform: scale(0.6); transform-origin: 100% 100%; }   /* a smaller Chippy for the slim header */
+:root[data-xp-view="condensed"] .chip-actor.at-header .chip-bubble { transform: scale(1.6667); transform-origin: 100% 100%; }   /* his words stay full size */
+:root[data-xp-view="condensed"] .app-header-inner, :root[data-xp-view="condensed"] .wrap { max-width: 110rem; }
+:root[data-xp-view="condensed"] .wrap { padding-top: 0.75rem; }
+@media (min-width: 75rem) {
+  :root[data-xp-view="condensed"] .layout { grid-template-columns: minmax(0, 1fr) clamp(22rem, 27vw, 27rem); gap: 1rem; }
+  #form-mount.cz { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+}
+#form-mount.cz .cz-col { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+@media (max-width: 74.99rem) { #form-mount.cz .cz-col + .cz-col { margin-top: 1rem; } }
+#form-mount.cz .form-section { margin: 0; padding: 0.6rem 0.85rem 0.7rem; border-radius: 0.8rem; background: rgba(255,255,255,0.035); box-shadow: inset 0 0 0 1px var(--xp-carmanah); }
+:root[data-xp-theme="light"] #form-mount.cz .form-section { background: var(--xp-white); box-shadow: var(--xp-lift); }
+:root[data-xp-theme="dark"][data-xp-oled="on"] #form-mount.cz .form-section { background: #000; box-shadow: inset 0 0 0 1px #2C4A42; }
+#form-mount.cz .form-section-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; border: 0; padding: 0; margin: 0 0 0.55rem; }
+#form-mount.cz .form-section-title .opt { text-transform: none; letter-spacing: 0; font-size: 0.78rem; }
+#form-mount.cz .field { margin-bottom: 0.55rem; padding: 0; }
+#form-mount.cz .field:last-child { margin-bottom: 0; }
+#form-mount.cz .q { font-size: 0.78rem; margin-bottom: 0.2rem; color: var(--xp-green); }
+:root[data-xp-theme="light"] #form-mount.cz .q { color: var(--xp-carmanah); }
+#form-mount.cz .hint { font-size: 0.75rem; margin-bottom: 0.25rem; opacity: 0.85; }
+#form-mount.cz .sub-q { font-size: 0.78rem; margin: 0.4rem 0 0.2rem; }
+#form-mount.cz .choice { min-height: 2.1rem; padding: 0.2rem 0.4rem; font-size: 0.8rem; border-radius: 0.5rem; white-space: nowrap; }
+#form-mount.cz .choice .mark, #form-mount.cz .choices .choice[aria-checked="true"]::after { display: none; }
+#form-mount.cz .choices { gap: 0.3rem; }
+#form-mount.cz input[type="text"], #form-mount.cz input[type="number"], #form-mount.cz input[type="date"], #form-mount.cz textarea { min-height: 2.25rem; padding: 0.3rem 0.6rem; font-size: 0.88rem; border-radius: 0.5rem; }
+#form-mount.cz textarea { min-height: 2.25rem; field-sizing: content; max-height: 8rem; padding-top: 0.475rem; padding-bottom: 0.475rem; line-height: 1.3rem; }   /* one line of text (or the example) sits centred in the box */
+#form-mount.cz .unit-row .suffix, #form-mount.cz .unit-row .prefix { font-size: 0.8rem; }
+#form-mount.cz .unit-row { min-height: 0; }
+#form-mount.cz .mini-check { min-height: 1.5rem; font-size: 0.82rem; padding: 0.05rem 0; gap: 0.45rem; line-height: 1.25; }
+#form-mount.cz .mini-box { flex-basis: 1rem; width: 1rem; height: 1rem; font-size: 0.7rem; border-width: 1.5px; border-radius: 0.22rem; }
+#form-mount.cz .tick-grid { gap: 0 0.9rem; }
+#form-mount.cz .other-input { margin-top: 0.35rem; }
+#form-mount.cz .repeat-auto { font-size: 0.75rem; margin-top: 0.25rem; }
+#form-mount.cz .field-row { gap: 0.6rem; }
+#form-mount.cz .field-row.date-row { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); column-gap: 0.7rem; row-gap: 0.2rem; }
+#form-mount.cz .form-section[data-sec="Work Order"]:has([data-field-id="platform"] .choices.cols-5) .field-row.date-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+#form-mount.cz .input-beside { gap: 0.5rem; }
+#form-mount.cz .input-beside input { flex: 1 1 8rem; max-width: none; }
+#form-mount.cz .input-beside .mini-check { flex: 1 1 100%; white-space: nowrap; }
+#form-mount.cz .field.cell-lock { padding: 0.4rem 0.6rem; border-radius: 0.6rem; margin-bottom: 0.55rem; display: grid; grid-template-columns: auto auto 1fr; gap: 0 1rem; align-items: center; }
+#form-mount.cz .field.cell-lock > .q { grid-column: 1 / -1; }
+#form-mount.cz .field.cell-lock > .other-input, #form-mount.cz .field.cell-lock > .field-error-msg { grid-column: 1 / -1; }
+#form-mount.cz .field.cell-lock .q { font-size: 0.8rem; margin-bottom: 0.15rem; }
+/* dropdowns */
+.cz-select { width: 100%; height: 2.25rem; font-family: var(--xp-font); font-size: 0.88rem; color: var(--xp-white); background-color: var(--xp-carmanah); border: 0; border-radius: 0.5rem; padding: 0 2rem 0 0.6rem; box-shadow: inset 0 -2px 0 var(--xp-green); cursor: pointer; -webkit-appearance: none; appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 1rem) 50%, calc(100% - 0.7rem) 50%; background-size: 0.3rem 0.3rem; background-repeat: no-repeat; text-overflow: ellipsis; }
+.cz-select:focus-visible { outline: 3px solid var(--xp-solar); outline-offset: 2px; }
+.cz-select.empty { color: rgba(255,255,255,0.65); box-shadow: inset 0 0 0 2px var(--xp-orange); }
+.cz-select option { color: #002B2B; background: #fff; }
+:root[data-xp-theme="light"] .cz-select { color: var(--xp-dark); background-color: var(--xp-white); box-shadow: inset 0 0 0 2px var(--xp-soft-line); }
+:root[data-xp-theme="light"] .cz-select:focus-visible { outline-color: var(--xp-dark); }
+:root[data-xp-theme="light"] .cz-select.empty { color: #8A7A55; background-color: #FFFBF0; box-shadow: inset 0 0 0 2px #F2C46B; }
+#form-mount.cz .has-error .cz-select { box-shadow: inset 0 0 0 2px var(--xp-orange); }
+/* compact grids inside sections */
+#form-mount.cz .form-section[data-sec="Work Order"], #form-mount.cz .form-section[data-sec="Connection Details"] { display: grid; gap: 0.55rem 0.7rem; align-items: start; }
+#form-mount.cz .form-section[data-sec="Work Order"] { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); }
+#form-mount.cz .form-section[data-sec="Connection Details"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#form-mount.cz .form-section[data-sec="Work Order"] > .field, #form-mount.cz .form-section[data-sec="Connection Details"] > .field, #form-mount.cz .form-section[data-sec="Connection Details"] .field-row > .field { margin: 0; }
+#form-mount.cz .form-section[data-sec="Work Order"] > h2, #form-mount.cz .form-section[data-sec="Connection Details"] > h2,
+#form-mount.cz .form-section[data-sec="Work Order"] > [data-field-id="tech"], #form-mount.cz .form-section[data-sec="Work Order"] > [data-field-id="rep_block"], #form-mount.cz .form-section[data-sec="Work Order"] > [data-field-id="rp_goal"],
+#form-mount.cz .form-section[data-sec="Connection Details"] > .field:has(.mini-check, textarea, .choices),
+#form-mount.cz .form-section[data-sec="Connection Details"] .field-row > .field:has(.mini-check, textarea, .choices) { grid-column: 1 / -1; }
+#form-mount.cz .form-section[data-sec="Connection Details"] .field-row { display: contents; }
+#form-mount.cz .form-section[data-sec="Connection Details"] > *:not(.field):not(.field-row):not(h2) { grid-column: 1 / -1; }
+@media (min-width: 75rem) {
+  :root[data-xp-view="condensed"] .preview-card { padding: 0.9rem; }
+  :root[data-xp-view="condensed"] .preview-card h2 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  :root[data-xp-view="condensed"] #output-box { font-size: 0.84rem; line-height: 1.5; }
+  :root[data-xp-view="condensed"] #preview-status { font-size: 0.82rem; margin: 0.4rem 0; }
+  :root[data-xp-view="condensed"] #next-btn { min-height: 2.4rem; font-size: 0.88rem; padding-top: 0.3rem; padding-bottom: 0.3rem; }
+}
+/* errors: a compact message and an orange outline on the control, instead of the side bar */
+#form-mount.cz .field.has-error, #form-mount.cz .field.cell-lock.has-error { border-left: 0; padding-left: 0; margin-left: 0; }
+#form-mount.cz .field.cell-lock.has-error { padding-left: 0.6rem; box-shadow: inset 0 0 0 2px var(--xp-orange); }
+#form-mount.cz .field-error-msg { font-size: 0.72rem; font-weight: 600; margin-top: 0.2rem; line-height: 1.3; }
+#form-mount.cz .has-error > .q { color: var(--xp-orange); }
+:root[data-xp-theme="light"] #form-mount.cz .has-error > .q { color: #B36B00; }
+#form-mount.cz .has-error input[type="text"], #form-mount.cz .has-error input[type="date"], #form-mount.cz .has-error textarea { box-shadow: inset 0 0 0 2px var(--xp-orange); }
+/* the truck roll row: date and work order type side by side, the "no previous truck roll" box on its own line underneath */
+#form-mount.cz .date-row { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); column-gap: 0.7rem; row-gap: 0.2rem; align-items: start; }
+#form-mount.cz .form-section[data-sec="Work Order"]:has([data-field-id="platform"] .choices.cols-5) .date-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+#form-mount.cz .date-row > .field, #form-mount.cz .date-row .input-beside { display: contents; }
+#form-mount.cz .date-row > .field > .q { grid-row: 1; margin: 0.15rem 0 0; }
+#form-mount.cz .date-row > .field:first-child > .q, #form-mount.cz .date-row input[type="date"], #form-mount.cz .date-row > .field:first-child > .field-error-msg { grid-column: 1; }
+#form-mount.cz .date-row > .field:nth-child(2) > * { grid-column: 2; }
+#form-mount.cz .date-row input[type="date"], #form-mount.cz .date-row .cz-select { grid-row: 2; }
+#form-mount.cz .date-row > .field > .field-error-msg, #form-mount.cz .date-row > .field:nth-child(2) > .other-input { grid-row: 3; }
+#form-mount.cz .date-row .input-beside .mini-check { grid-column: 1 / -1; grid-row: 4; white-space: normal; margin-top: 0.2rem; }
+#form-mount.cz .form-section[data-sec="Work Order"]:has([data-field-id="platform"] .choices.cols-5) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+/* before a technology is picked */
+#form-mount.cz .cz-ghost { opacity: 0.55; pointer-events: none; user-select: none; }
+#form-mount.cz .cz-ghost-fold .form-section-title { margin-bottom: 0; }
+#form-mount.cz .cz-ghost-fold .form-section-title::before { content: ''; display: inline-block; width: 0.4rem; height: 0.4rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); margin: 0 0.6rem 0 0.1rem; }
+#form-mount.cz .cz-ghost-note { grid-column: 1 / -1; margin: 0.1rem 0 0; font-size: 0.82rem; opacity: 0.7; }
+#form-mount.cz .cz-ghost-grid { display: grid; gap: 0.5rem 0.7rem; pointer-events: none; }
+#form-mount.cz .cz-ghost-grid.wo { grid-column: 1 / -1; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr); opacity: 0.55; }
+#form-mount.cz .cz-ghost-grid.wo .cz-g:nth-child(3), #form-mount.cz .cz-ghost-grid.wo .cz-g:nth-child(4) { grid-column: auto; }
+#form-mount.cz .cz-ghost-grid.wo .wide { grid-column: 1 / -1; width: 55%; }
+#form-mount.cz .cz-ghost-grid.two { grid-template-columns: 1fr 1fr; margin: 0.2rem 0 0.6rem; }
+#form-mount.cz .cz-ghost-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#form-mount.cz .cz-g { display: block; border-radius: 0.5rem; background: rgba(120,140,130,0.28); }
+#form-mount.cz .cz-g.pill, #form-mount.cz .cz-g.box { height: 2.25rem; }
+#form-mount.cz .cz-g.line { height: 0.8rem; border-radius: 0.4rem; width: 80%; }
+#form-mount.cz .cz-g.box.full { margin-bottom: 0.6rem; }
+:root[data-xp-view="condensed"] footer.app-footer { margin-top: 0.7rem; padding-top: 0.2rem; }
+:root[data-xp-view="condensed"] .footer-note { margin-top: 0.15rem; font-size: 0.66rem; }
+:root[data-xp-view="condensed"] body { padding-bottom: 0.5rem; }
+/* folding optional sections */
+.cz-toggle { display: flex; align-items: center; gap: 0.45rem; width: 100%; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.cz-toggle::before { content: ''; width: 0.4rem; height: 0.4rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); margin: -0.15rem 0.15rem 0 0.1rem; transition: transform .15s; }
+.cz-closed .cz-toggle::before { transform: rotate(-45deg); margin-top: 0; }
+.cz-count { margin-left: auto; min-width: 1.3rem; height: 1.3rem; padding: 0 0.4rem; border-radius: 1rem; background: var(--xp-green); color: var(--xp-dark); font-size: 0.72rem; font-weight: 700; display: inline-grid; place-items: center; letter-spacing: 0; }
+#form-mount.cz .cz-fold.cz-closed > :not(h2) { display: none; }
+#form-mount.cz .cz-fold.cz-closed .form-section-title { margin-bottom: 0; }
+#form-mount.cz .cz-fold > [data-field-id] > .hint { display: none; }
+@media (prefers-reduced-motion: reduce) { .cz-toggle::before { transition: none; } }
+
 /* ---- condensed view: same questions and output, tighter spacing and smaller controls for power users ---- */
 :root[data-xp-view="condensed"] .wrap { padding-top: 0.6rem; }
 :root[data-xp-view="condensed"] .form-section { margin-bottom: 1.1rem; }
@@ -1018,7 +1141,7 @@ footer.app-footer .footer-toggles .theme-switch.reveal-switch.collapsed {
     </div>
   </div>
   </div>
-  <div class="footer-text">Xplore &middot; Work Order Description Generator &middot; <button type="button" class="ver-link" title="What's new">v1.0.0</button> &middot; <button type="button" class="ver-link name-link">Add your name</button></div>
+  <div class="footer-text">Xplore &middot; Work Order Description Generator &middot; <button type="button" class="ver-link" title="What's new">v1.1.0</button> &middot; <button type="button" class="ver-link name-link">Add your name</button></div>
   <p class="footer-note">Internal tool for Xplore Customer Care. Nothing you enter leaves your browser; your work order in progress stays on this computer until you copy it or start a new one.</p></footer>
 </div>
 
@@ -1031,7 +1154,7 @@ footer.app-footer .footer-toggles .theme-switch.reveal-switch.collapsed {
 <div id="dialog-mount"></div>
 
 <script>
-var APP_VERSION = '1.0.0';
+var APP_VERSION = '1.1.0';
 /* ===================== helpers ===================== */
 function $(id) { return document.getElementById(id); }
 
@@ -1060,7 +1183,7 @@ var store = {
 function str(v) { return String(v === undefined || v === null ? '' : v).trim(); }
 function cap(t) { t = str(t); return t ? t.charAt(0).toUpperCase() + t.slice(1) : ''; }
 function lowerFirst(t) { t = str(t); return t ? t.charAt(0).toLowerCase() + t.slice(1) : ''; }
-function titleCase(t) { return String(t).replace(/(^|\s)([a-z]+)/g, function (m, a, w) { return (w === 'of' || w === 'to' || w === 'a' || w === 'the') ? m : a + w.charAt(0).toUpperCase() + w.slice(1); }); }
+function titleCase(t) { return String(t).replace(/(^|\s)([a-z][A-Za-z]*)/g, function (m, a, w) { return (w === 'of' || w === 'to' || w === 'a' || w === 'the' || /[A-Z]/.test(w)) ? m : a + w.charAt(0).toUpperCase() + w.slice(1); }); }   // brand-style words like iLoop keep their casing
 
 /* ===================== state ===================== */
 var DRAFT_KEY = 'xplore_wod_fw_repair_draft_v1';
@@ -1083,7 +1206,10 @@ var REPEAT_KINDS = ['7 Day', '30 Day', '60 Day', '90 Day'];
 var LAST_VISIT = ['Install', 'Conversion', 'Repair', 'Other'];
 var CALL_DSG = 'Tech must call DSG to validate connection before leaving site';
 
-var PLANS = {   // Fixed Wireless speed plans; Fibre and Satellite plans are typed until their lists are known
+var PLANS = {   // speed plans by platform (Fixed Wireless and Fibre); Satellite plans are typed until its list is confirmed. "Other" is always offered for anything not listed
+  FTX: ['Fibre 100', 'Fibre 500', 'Fibre 1000'],
+  CTX: ['Fibre 100', 'Fibre 500', 'Fibre 1000'],
+  ATX: ['iLoop 100', 'iLoop 400', 'iLoop 1000', 'iLoop 2G', 'Fibre 100', 'Fibre 500', 'Fibre 1000'],
   LTE: ['LTE-25x3', 'LTE-25x5', 'LTE-50x3', 'LTE-50x5', 'LTE-50x10', 'LTE-100x5', 'LTE-100x10'],
   FWN: ['FWN-25x3', 'FWN-25x5', 'FWN-50x3', 'FWN-50x5', 'FWN-50x10', 'FWN-100x5', 'FWN-100x10', 'FWN-250x25', 'FWN-500x50']
 };
@@ -1162,8 +1288,10 @@ function errFor(id) { for (var i = 0; i < ERRORS.length; i++) if (ERRORS[i].id =
 function jumpTo(id) {
   var node = document.querySelector('[data-field-id="' + id + '"]');
   if (!node) return;
+  var fold = node.closest('.cz-fold.cz-closed');   // condensed view: open a folded section to show the question
+  if (fold) { CZ_OPEN[fold.getAttribute('data-sec')] = true; fold.classList.remove('cz-closed'); }
   node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  var focusable = node.querySelector('input, textarea, button');
+  var focusable = node.querySelector('input, textarea, select, button');
   if (focusable) { try { focusable.focus({ preventScroll: true }); } catch (e) {} }
 }
 
@@ -1199,7 +1327,22 @@ function fieldWrap(id, label, optional, hint, controls, extraClass, tip) {
   return wrap;
 }
 
+function czOn() { return document.documentElement.getAttribute('data-xp-view') === 'condensed'; }
+/* Condensed view: pick-one questions with 4 or more answers become dropdowns (Technology, Platform and the How Many buttons stay as buttons) */
+function czDropdown(key, options) { return czOn() && options.length >= 4 && key !== 'tech' && key !== 'platform' && !/_qty$/.test(key); }
 function choiceGroup(key, options, cols, fieldId, afterChange) {
+  if (czDropdown(key, options)) {
+    var sel = el('select', { class: 'cz-select' + (STATE[key] ? '' : ' empty') });
+    sel.appendChild(el('option', { value: '', text: 'Choose…' }));
+    options.forEach(function (o) { var opt = el('option', { value: o, text: titleCase(o) }); if (STATE[key] === o) opt.selected = true; sel.appendChild(opt); });
+    sel.addEventListener('change', function () {
+      var o = sel.value; STATE[key] = o;
+      if (o === 'Other') PENDING_FOCUS = fieldId;
+      if (afterChange && o) afterChange(o);
+      changed(fieldId, true);
+    });
+    return sel;
+  }
   var group = el('div', { class: 'choices' + (cols ? ' cols-' + cols : ''), role: 'radiogroup' });
   options.forEach(function (o) {
     var selected = STATE[key] === o;
@@ -1226,6 +1369,7 @@ function otherInput(key, fieldId, label, placeholder) {
 function choiceField(o) {
   // o: {id, key, label, hint, options, cols, otherLabel, otherPlaceholder, optional, after, extra}
   var controls = [choiceGroup(o.key, o.options, o.cols, o.id, o.after)];
+  if (controls[0].tagName === 'SELECT' && o.label) controls[0].setAttribute('aria-label', o.label);
   if (o.otherLabel && STATE[o.key] === 'Other') controls.push(otherInput(o.key + '_other', o.id, o.otherLabel, o.otherPlaceholder));
   (o.extra || []).forEach(function (x) { controls.push(x); });
   return fieldWrap(o.id, o.label, o.optional, o.hint, controls);
@@ -1341,7 +1485,7 @@ function row(children, cls) { return el('div', { class: 'field-row' + (cls ? ' '
 function platformField() {
   var tc = T();
   return choiceField({ id: 'platform', key: 'platform', label: 'Platform', options: tc.platforms, cols: tc.platforms.length,
-    after: function (o) { if (tc.id === 'fw' && STATE.plan && STATE.plan.indexOf(o + '-') !== 0) STATE.plan = ''; } });
+    after: function (o) { if (PLANS[o] && STATE.plan && STATE.plan !== 'Other' && PLANS[o].indexOf(STATE.plan) < 0) STATE.plan = ''; } });   // a plan that the new platform doesn't offer is cleared
 }
 function planField() {
   if (techId() === 'vas') {
@@ -1349,9 +1493,9 @@ function planField() {
     return STATE.platform === 'XWH' ? textInput('plan', 'plan', 'Customer Speed Plan', { optional: true, placeholder: 'e.g. plan name or speed' })
       : textInput('plan', 'plan', 'TV Package', { optional: true, placeholder: 'e.g. package name' });
   }
-  if (techId() !== 'fw') return textInput('plan', 'plan', 'Customer Speed Plan', { placeholder: 'e.g. plan name or speed' });
+  if (techId() !== 'fw' && techId() !== 'ftth') return textInput('plan', 'plan', 'Customer Speed Plan', { placeholder: 'e.g. plan name or speed' });
   if (!STATE.platform) return fieldWrap('plan', 'Customer Speed Plan', false, 'Choose the platform first.', []);
-  return choiceField({ id: 'plan', key: 'plan', label: 'Customer Speed Plan', options: PLANS[STATE.platform].concat('Other'), cols: 3, otherLabel: 'Speed Plan', otherPlaceholder: 'e.g. plan name or speed' });
+  return choiceField({ id: 'plan', key: 'plan', label: 'Customer Speed Plan', options: PLANS[STATE.platform].concat('Other'), cols: techId() === 'ftth' ? 4 : 3, otherLabel: 'Speed Plan', otherPlaceholder: 'e.g. plan name or speed' });
 }
 function ethField() {
   return choiceField({ id: 'eth', key: 'eth', label: 'Ethernet Link', options: ETH, cols: 5,
@@ -1574,6 +1718,15 @@ function animateForm(before, mount) {
 }
 
 /* before a technology is chosen: faint outlines of the sections that will appear, so the page doesn't look empty */
+function czGhostInto(workOrder, left, right) {
+  function g(cls) { return el('span', { class: 'cz-g ' + cls }); }
+  function card(title, kids, extra) { return el('section', { class: 'form-section cz-ghost' + (extra || ''), 'aria-hidden': 'true' }, [el('h2', { class: 'form-section-title', text: title })].concat(kids)); }
+  workOrder.appendChild(el('p', { class: 'cz-ghost-note', text: 'Pick a technology to begin. Your questions will appear here.' }));
+  workOrder.appendChild(el('div', { class: 'cz-ghost-grid wo', 'aria-hidden': 'true' }, [g('pill'), g('box'), g('box'), g('box'), g('line wide')]));
+  left.appendChild(card('Diagnosis', [el('div', { class: 'cz-ghost-grid two' }, [g('line'), g('line'), g('line'), g('line')]), g('box full'), el('div', { class: 'cz-ghost-grid two' }, [g('line'), g('line'), g('line'), g('line')])]));
+  right.appendChild(card('Connection Details', [el('div', { class: 'cz-ghost-grid three' }, [g('box'), g('box'), g('box'), g('box'), g('box'), g('box')])]));
+  ['Specific Instructions', 'VAS Equipment Check', 'Site Restrictions'].forEach(function (t) { right.appendChild(card(t, [], ' cz-ghost-fold')); });
+}
 function ghostSections() {
   function bars(n) { var a = []; for (var i = 0; i < n; i++) a.push(el('span', { class: 'ghost-bar' + (i % 3 === 2 ? ' short' : '') })); return a; }
   function pills(n) { var a = []; for (var i = 0; i < n; i++) a.push(el('span', { class: 'ghost-pill' })); return a; }
@@ -1603,25 +1756,62 @@ function exampleText() {
   finally { STATE = saved; }
 }
 
+var CZ_OPEN = {};   // condensed view: which optional sections the agent has opened or closed (by title)
 function render() {
   setTimeout(queueFit, 0);
   var y = window.pageYOffset;
-  var mount = $('form-mount');
-  var before = mount.children.length ? formSnapshot(mount) : null;
-  mount.innerHTML = '';
-  buildSections().forEach(function (sec) {
-    var s = el('section', { class: 'form-section', 'data-sec': sec.title }, [el('h2', { class: 'form-section-title' }, [sec.title, sec.optional ? el('span', { class: 'opt', text: ' (optional)' }) : null])]);
+  var mount = $('form-mount'), cz = czOn();
+  var ae = document.activeElement, aeField = ae && ae.closest ? ae.closest('#form-mount [data-field-id]') : null;   // keep keyboard focus on the same control across the redraw
+  var focusKey = aeField ? aeField.getAttribute('data-field-id') : null, focusIdx = aeField ? [].indexOf.call(aeField.querySelectorAll('input,textarea,select,button'), ae) : -1;
+  var before = mount.children.length && !cz && !mount.classList.contains('cz') ? formSnapshot(mount) : null;
+  mount.innerHTML = ''; mount.classList.toggle('cz', cz);
+  var built = buildSections().map(function (sec) {
+    var title = el('h2', { class: 'form-section-title' }, [sec.title, sec.optional ? el('span', { class: 'opt', text: ' (optional)' }) : null]);
+    var s = el('section', { class: 'form-section', 'data-sec': sec.title }, [title]);
     sec.fields.forEach(function (f) { s.appendChild(f()); });
-    mount.appendChild(s);
+    if (cz && sec.optional) czFold(s, title, sec.title);
+    return { sec: sec, node: s };
   });
-  if (!T()) mount.appendChild(ghostSections());
+  if (cz && !T()) {   // condensed, before a technology is picked: the same two-column cards, with faded placeholders for what is to come
+    var gl = el('div', { class: 'cz-col' }), gr = el('div', { class: 'cz-col' });
+    built.forEach(function (b) { gl.appendChild(b.node); });
+    czGhostInto(built[0].node, gl, gr);
+    mount.appendChild(gl); mount.appendChild(gr);
+  } else if (cz) {   // two columns: the work order and diagnosis on the left, connection details and the optional extras on the right
+    var left = el('div', { class: 'cz-col' }), right = el('div', { class: 'cz-col' }), toRight = false, folds = [];
+    built.forEach(function (b, i) {
+      if (b.sec.title === 'Connection Details' || b.sec.optional) toRight = true;
+      if (b.sec.optional) folds.push(b.node); else (i > 0 && toRight ? right : left).appendChild(b.node);
+    });
+    folds.forEach(function (n) { right.appendChild(n); });   // the optional extras sit together under Connection Details
+    mount.appendChild(left); mount.appendChild(right);
+  } else built.forEach(function (b) { mount.appendChild(b.node); });
+  if (!T() && !cz) mount.appendChild(ghostSections());
   window.scrollTo(0, y);
-  animateForm(before, mount);
+  if (!cz) animateForm(before, mount);
+  if (focusKey && !PENDING_FOCUS && focusIdx >= 0) {
+    var fNode = mount.querySelector('[data-field-id="' + focusKey + '"]'), ctrls = fNode ? fNode.querySelectorAll('input,textarea,select,button') : [];
+    if (ctrls[focusIdx]) { try { ctrls[focusIdx].focus({ preventScroll: true }); } catch (e) {} }
+  }
   if (PENDING_FOCUS) {
     var target = document.querySelector('[data-field-id="' + PENDING_FOCUS + '"] .other-input input');
     PENDING_FOCUS = null;
     if (target) target.focus();
   }
+}
+
+/* condensed view: an optional section folds down to its title, with a count of what is filled in */
+function czFold(s, title, name) {
+  var n = s.querySelectorAll('[role=checkbox][aria-checked="true"]').length;
+  [].forEach.call(s.querySelectorAll('textarea, input[type=text]'), function (i) { n += str(i.value).split('\n').filter(function (l) { return l.trim(); }).length; });
+  var open = CZ_OPEN[name] !== undefined ? CZ_OPEN[name] : n > 0;
+  s.classList.add('cz-fold'); if (!open) s.classList.add('cz-closed');
+  var btn = el('button', { type: 'button', class: 'cz-toggle', 'aria-expanded': open ? 'true' : 'false' }, [].slice.call(title.childNodes));
+  if (n) btn.appendChild(el('span', { class: 'cz-count', text: String(n) }));
+  btn.addEventListener('click', function () {
+    var now = s.classList.toggle('cz-closed'); CZ_OPEN[name] = !now; btn.setAttribute('aria-expanded', now ? 'false' : 'true'); queueFit();
+  });
+  title.innerHTML = ''; title.appendChild(btn);
 }
 
 /* ===================== values used by both the output and the checks ===================== */
@@ -1782,7 +1972,7 @@ function validate() {
   if (!isProactive() && !isReloc()) need('diagnosed', diagnosedItems().length > 0 && !(isOn('diagnosed', 'Other') && linesOf('diagnosed_more').length === 0), isOn('diagnosed', 'Other') && linesOf('diagnosed_more').length === 0 ? 'Type the other finding, or untick Other.' : 'Tick at least one finding.');
 
   need('platform', T().platforms.indexOf(STATE.platform) >= 0);
-  if (id === 'fw') need('plan', STATE.plan === 'Other' ? !!str(STATE.plan_other) : (PLANS[STATE.platform] || []).indexOf(STATE.plan) >= 0, STATE.platform ? 'Please choose the customer speed plan.' : 'Choose the platform, then the speed plan.');
+  if (id === 'fw' || id === 'ftth') need('plan', STATE.plan === 'Other' ? !!str(STATE.plan_other) : (PLANS[STATE.platform] || []).indexOf(STATE.plan) >= 0, STATE.platform ? 'Please choose the customer speed plan.' : 'Choose the platform, then the speed plan.');
   else if (id !== 'vas') need('plan', !!str(STATE.plan), 'Enter the customer speed plan.');
   if (id === 'fw') {
     need('tower', !!str(STATE.tower), 'Enter the tower.');
@@ -1941,6 +2131,14 @@ function fitPreview(animate) {
   if (!col || !card || !form) return;
   if (!window.matchMedia('(min-width: 62rem)').matches) { card.style.height = ''; return; }
   var rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+  if (czOn() && window.matchMedia('(min-width: 75rem)').matches) {   // condensed: the description fills the window beside the form, leaving room for the footer, so the page itself doesn't need to scroll
+    var restTop = form.getBoundingClientRect().top + (window.pageYOffset || 0), ft = document.querySelector('footer.app-footer'), fh = 0;
+    if (ft) { var fcs = getComputedStyle(ft); fh = ft.offsetHeight + parseFloat(fcs.marginTop || 0); }
+    var czH = window.innerHeight - restTop - fh - 12, cb = $('corner-bar'), cbr = cb && cb.getBoundingClientRect(), ccr = card.getBoundingClientRect();
+    if (cbr && cbr.width && ccr.right > cbr.left - 8 && ccr.left < cbr.right + 8) czH = Math.min(czH, cbr.top + (window.pageYOffset || 0) - restTop - 12);   // stays clear of the corner buttons
+    card.style.transition = ''; card.style.height = Math.max(czH, 14 * rem) + 'px';   // fixed while scrolling, so the page never grows or jumps
+    card.classList.toggle('tight', window.innerHeight < 41 * rem); return;
+  }
   var top = Math.max(form.getBoundingClientRect().top, 16);       // the form and the card start together; the card sticks 1rem from the top
   var sb = $('corner-bar'), cr = card.getBoundingClientRect(), sr = sb && sb.getBoundingClientRect();
   var floor = window.innerHeight - 16;   // the card's lowest edge; it stops above the corner Feedback and Settings buttons when they would share a column
@@ -2552,6 +2750,7 @@ function applyView(v, remember) {
   if (v === 'condensed') document.documentElement.setAttribute('data-xp-view', 'condensed'); else document.documentElement.removeAttribute('data-xp-view');
   var sw = $('view-switch'); if (sw) sw.setAttribute('aria-checked', v === 'condensed' ? 'true' : 'false');
   if (remember) store.set(VIEW_KEY, v);
+  if (remember) { render(); updatePreview(); }   // condensed swaps in dropdowns and a two-column layout, so the form is rebuilt
   queueFit();
 }
 function initView() {
@@ -2837,6 +3036,8 @@ function initName() {
 /* ===================== change log (opened from the version number in the footer; newest first) ===================== */
 /* Release notes. At the owner's request, Chippy appears only once (the introduction), and holiday themes and other easter eggs are never listed. */
 var CHANGELOG = [
+  { v: '1.1.0', d: 'Oct 27, 2026', items: ['Condensed view redesigned for power users: dropdowns for the longer answer lists, a two-column form beside the description, and optional sections that fold away with a count of what is filled in, so a full work order fits on one screen. Turn it on under Settings.'] },
+  { v: '1.0.1', d: 'Oct 27, 2026', items: ['Fibre: pick the customer speed plan from a list for FTX, CTX and ATX (including iLoop plans), or choose Other to type it in.', 'A short note at the bottom of the page confirms that nothing you enter leaves your browser.'] },
   { v: '1.0.0', d: 'Oct 24, 2026', items: [
     'Official launch. Build clear, consistent repair work order descriptions for Fibre, Fixed Wireless, Satellite and VAS, in English, French or both, ready to paste into Salesforce.',
     'Nothing gets lost: the work order you are on is saved on this computer, so a refresh or a closed tab can be restored. It clears once you copy the description or start a new one.',
