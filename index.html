@@ -756,6 +756,7 @@ header.app-header .header-top img.spin { animation: xp-spin 0.7s ease-in-out; }
 @keyframes xp-spin { 0% { transform: scale(1) rotate(0); } 50% { transform: scale(1.35) rotate(360deg); } 100% { transform: scale(1) rotate(720deg); } }
 header.app-header .header-top img.yawn { transform-origin: 50% 100%; animation: xp-yawn 2.6s ease-in-out; }
 @keyframes xp-yawn { 0%, 100% { transform: scale(1, 1) rotate(0); } 30% { transform: scale(0.94, 1.14) rotate(-3deg); } 55% { transform: scale(0.94, 1.14) rotate(3deg); } 75% { transform: scale(1.04, 0.95) rotate(0); } }
+.footer-note { max-width: 40rem; margin: 0.45rem auto 0; padding: 0 1rem; font-size: 0.7rem; line-height: 1.45; }
 .footer-text { cursor: pointer; user-select: none; -webkit-user-select: none; transition: opacity 0.5s; }
 @media (prefers-reduced-motion: reduce) { header.app-header .header-top img.spin, header.app-header .header-top img.yawn { animation: none; } }
 
@@ -857,7 +858,7 @@ footer.app-footer .footer-toggles .theme-switch.reveal-switch.collapsed {
 /* ---- retro mode: the 2020 Xplornet website look ---- */
 :root[data-xp-retro="on"] { --xp-font: 'Myriad Pro', 'Myriad', 'Carlito', 'Segoe UI', system-ui, sans-serif; font-size: 104%; }
 :root[data-xp-retro="on"] .hint, :root[data-xp-retro="on"] #output-box, :root[data-xp-retro="on"] .repeat-auto, :root[data-xp-retro="on"] input, :root[data-xp-retro="on"] textarea,
-:root[data-xp-retro="on"] .mini-check, :root[data-xp-retro="on"] .help-bubble, :root[data-xp-retro="on"] header.app-header p, :root[data-xp-retro="on"] .footer-text { font-family: Arial, 'Liberation Sans', Helvetica, sans-serif; }
+:root[data-xp-retro="on"] .mini-check, :root[data-xp-retro="on"] .help-bubble, :root[data-xp-retro="on"] header.app-header p, :root[data-xp-retro="on"] .footer-text, :root[data-xp-retro="on"] .footer-note { font-family: Arial, 'Liberation Sans', Helvetica, sans-serif; }
 .retro-hero { display: none; }
 :root[data-xp-retro="on"] .retro-hero { display: block; position: relative; overflow: hidden; color: #fff; background: linear-gradient(100deg, #0F78BF 0%, #1B5CA4 55%, #1E468A 100%); }
 :root[data-xp-retro="on"] .retro-hero::before { content: ""; position: absolute; inset: 0; opacity: 0.9; background: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='300' viewBox='0 0 110 300'%3E%3Cpolygon points='0,0 50,0 110,150 50,300 0,300 60,150' fill='%23ffffff' fill-opacity='0.13'/%3E%3C/svg%3E") repeat-x right center / 80px 100%; -webkit-mask-image: linear-gradient(90deg, transparent 25%, #000 85%); mask-image: linear-gradient(90deg, transparent 25%, #000 85%); }
@@ -1006,7 +1007,8 @@ footer.app-footer .footer-toggles .theme-switch.reveal-switch.collapsed {
     </div>
   </div>
   </div>
-  <div class="footer-text">Xplore &middot; Work Order Description Generator &middot; <button type="button" class="ver-link" title="What's new">v1.0.0</button> &middot; <button type="button" class="ver-link name-link">Add your name</button></div></footer>
+  <div class="footer-text">Xplore &middot; Work Order Description Generator &middot; <button type="button" class="ver-link" title="What's new">v1.0.0</button> &middot; <button type="button" class="ver-link name-link">Add your name</button></div>
+  <p class="footer-note">Internal tool for Xplore Customer Care. Nothing you enter leaves your browser; your work order in progress stays on this computer until you copy it or start a new one.</p></footer>
 </div>
 
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
@@ -1877,7 +1879,7 @@ function buildOutput(mark, lang) {
   }
 
   section(t('VAS EQUIPMENT CHECK:', 'VÉRIFICATION DE L\'ÉQUIPEMENT SVA :'), vasEqItems(lang), false, '',
-    t('Please make sure you have this equipment in stock before heading to site.', "Veuillez vous assurer d'avoir cet équipement en stock avant de vous rendre sur place."));
+    t('Please ensure required stock is on hand.', "Veuillez vous assurer d'avoir le matériel requis en main."));
   section(t('SITE RESTRICTIONS:', 'RESTRICTIONS DU SITE :'), siteItems(lang), false);
   return L.join('\n');
 }
